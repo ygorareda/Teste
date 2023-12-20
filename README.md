@@ -1,5 +1,6 @@
 # Teste
 
+```javascript
 -- create
 CREATE TABLE CLIENTE (
   Id int not null primary key,
@@ -65,3 +66,26 @@ select CLIENTE.Id, CLIENTE.Nome,PARCELA.DataVencimento, DATEDIFF(second,PARCELA.
       on PARCELA.FinanciamentoId = FINANCIAMENTO.Id
   group by CLIENTE.Id, CLIENTE.Nome,PARCELA.DataVencimento, PARCELA.DataPagamento
   having DATEDIFF(second,PARCELA.DataVencimento,GETDATE())/86400 > 5 and PARCELA.DataPagamento is null
+```
+
+
+  # Microsserviços
+
+  Microsserviços é um tipo de arquitetura utilizada onde o software é divido em pequenos pedaços, chamados serviços, onde cada um deles cumprem um papel e função dentro do software.
+  
+  Geralmente, o software é construido em cima desses serviços, onde um processo pode ser executado por um serviço. A comunicação entre os serviços, é por meio de uma API.
+
+  Essa arquitetura tem como benefício escalar com autonomia. Com ela é possível conseguir entregar valor com rapidez e frequencia, principalmente em softwares maiores e mais complexos, pois com essa abordagem, permite a implementação de novos recursos com velocidade, sem reescrever blocos grandes como em um monolito, pois cada código fica no seu contexto.
+
+  ![Diagrama](image.png)
+
+  Como Demonstrado no Diamagra acima, temos um exemplo com 3 serviços em uma loja.
+
+  O primeiro, o seviço de inventário, gerencia todas as informações referentes a produto, como estoque, preço, etc. 
+  
+  O segundo, o serviço de pagamento, gerencia todas as informações referentes a pagamento, como cobrança do cartão, etc.
+
+  E por ultimo, o serviço de entrega, gerencia todas as informações referentes a envio do produto ao cliente após a finalizar a compra.
+
+  Com esse exemplo, vemos que cada contexto fica separado em um serviço, cada um com a sua função dentro do software.
+
